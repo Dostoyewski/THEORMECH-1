@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Клеточный автомат</title>
+	<script src="script1.js"></script>
+	<script src="Wolf.js"></script>
+	<script src="Field.js"></script>
+	<script src="Sheep.js"></script>
+	<script src="Graph.js"></script>
+	<table>
+	<tr><td><input type="text" id="lowe" size='1' value='100'></input> Хищники</td><td><input type="text" id="xlimit" size='1' value='1000'> Лимит хищников</input></td></tr> <!--ряд с ячейками заголовков-->
+	<tr><td><input type="text" id="sheep" size='1' value='500'></input> Жертвы</td><td><input type="text" id="glimit" size='1' value='1000'> Лимит жертв</input></td></tr> <!--ряд с ячейками тела таблицы-->
+	<tr><td><input type="text" id="die" size='1' value='100'></input> Время голодного существования</td><td><input type="text" id="replicate" size='1' value='10'></input> Период размножения жертв</td></tr>
+	<tr><td><input type="text" id="xreplicate" size='1' value='10'></input> Период размножения хищиников</td></tr>
+	<tr><td><button id="gen">Создать поле</button></td><td><button id="b1">Старт</button></td><td><button id="b2">Стоп</button></td></tr>
+	</table>
+</table>
+</head>
+<body>
+	<canvas id="field" width='1400' height='1000' style="border: 1px solid #000000"></canvas>
+	<table>
+	<tr><td><canvas id="graph" width='1400' height='250' style="border: 1px solid #000000"></canvas></td><td></td></tr>
+	</table>
+</body>
+</html>
