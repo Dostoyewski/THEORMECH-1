@@ -3,10 +3,10 @@ window.addEventListener("load", main, false);
 function main(){
 	b1.onclick = function(){
 		var ctx = field.getContext("2d");
-		var x0 = document.getElementById('x0').value;
-		var y0 = document.getElementById('y0').value;
-		var v0 = document.getElementById('v0').value;
-		var alpha = document.getElementById('alpha').value;
+		var x0 = Number(document.getElementById('x0').value);
+		var y0 = Number(document.getElementById('y0').value);
+		var v0 = Number(document.getElementById('v0').value);
+		var alpha = Number(document.getElementById('alpha').value);
 		var step = 0.1;
 		var x = parseFloat(x0);
 		var y;
