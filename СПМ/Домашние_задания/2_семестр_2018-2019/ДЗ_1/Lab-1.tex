@@ -1,0 +1,134 @@
+\documentclass{article}
+  \usepackage[utf8]{inputenc}
+  \usepackage[russian]{babel}
+  \usepackage[left=2cm,right=2cm,
+  top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{mcode}
+\usepackage{url,textcomp}
+\author{Кондратенко Федор, гр 13632/1}
+\title{Отчет по домашнему заданию №1 второго семестра 2018-2019 учебного года}
+\date{\today}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
+\frenchspacing
+\begin{document}
+\maketitle
+\section*{Задание 1:  Построение графика функции с использованием блоков Simulink}
+Составить блок схему функции и получить ее график двумя способами:
+\begin{enumerate} 
+    \item {с помощью блока Scope;}
+    \item {путем передачи данных в рабочую область и применения приложения PLOTS.}
+\end{enumerate}
+Функция: $$ y = \frac{lg(x^2 - 1)}{log_5(ax^2 - b)}, a = 1.1, b = 0.09 $$
+
+\begin{figure}[!h]
+	
+	\centering
+	
+	\includegraphics[width=0.7\linewidth]{SC_1.png}
+	
+	\caption{Блок-схема 1}
+	
+	\label{fig:mpr}
+	
+\end{figure}
+~\\
+~\\\\
+~\\
+~\\\\
+~\\
+~\\\\
+~\\
+~\\\\
+
+Результат моделирования на участке 0..40 секунд:\\
+
+\begin{figure}[!h]
+	
+	\centering
+	
+	\includegraphics[width=0.7\linewidth]{Graph_1.jpg}
+	
+	\caption{График 1}
+	
+	\label{fig:mpr}
+	
+\end{figure}
+
+
+Построение тех же данных через plot:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=0.4\textheight]{Graph_2.jpg}
+	\caption{График 2}
+	\label{fig:mpr}
+\end{figure}
+\section*{Задание 2: Решение нелинейного алгебраического уравнения}
+Составить блок схему и получить численное решение нелинейного уравнения. Результат вывести на цифровой дисплей.\\
+Уравнение: $$x^4+2x^3-x-1=0$$
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{SC_2}
+	\caption{Блок-схема 2}
+	\label{fig:mpr}
+\end{figure}
+
+\section*{Задание 3: Решение систем алгебраических уравнений}
+Cоставить блок схему решения системы 4-х линейных уравнений и получить ее численное решение. Решить данную систему символьно и сопоставить результаты.~\\
+
+$$\begin{cases}
+	2x_1+x_2-5x_3+x_4=-4\\
+	x_1-3x_2-6x_4=-7\\
+	2x_2-x_3+2x_4=2\\
+	x_1+4x_2-7x_3+6x_4=-2\\
+\end{cases}$$
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\linewidth]{SC_3}
+	\caption{Блок-схема 3}
+	\label{fig:sc3}
+\end{figure}
+Численное решение в Simulink совпало с решением в Matlab.
+~\\
+~\\\\
+~\\
+~\\\\ Для проверки решения использовался следующий код:
+\begin{lstlisting}
+A = [2 1 -5 1;
+    1 -3 0 -6;
+    0 2 -1 2;
+    1 4 -7 6];
+B = [-4; -7; 2; -2];
+X = linsolve(A, B)
+fprintf("Solution: x1 = %f, x2 = %f, x3 = %f, x4 = %f\n", X(1), X(2), X(3), X(4));
+\end{lstlisting}
+
+Вывод в консоль:
+\begin{lstlisting}
+X =
+
+    2.0000
+    1.0000
+    2.0000
+    1.0000
+
+Solution: x1 = 2.000000, x2 = 1.000000, x3 = 2.000000, x4 = 1.000000
+
+\end{lstlisting}
+~\\
+~\\\\ 
+Решение системы:
+$$\begin{cases}
+	x_1=2\\
+	x_2=1\\
+	x_3=2\\
+	x_4=1\\
+\end{cases}$$
+\end{document}
+ 
