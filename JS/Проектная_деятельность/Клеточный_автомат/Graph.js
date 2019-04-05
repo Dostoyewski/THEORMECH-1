@@ -15,11 +15,13 @@ class Graph{													//Класс графика
 	
 	draw(xy, gy){
 		this.ctx.beginPath();
-		this.ctx.strokeStyle = this.Xcolor;
+		this.ctx.strokeStyle = '#ff0000';
 		this.ctx.moveTo(this.cycle - 1, this.maxy - this.xpy/this.mas);
 		this.ctx.lineTo(this.cycle, this.maxy - xy/this.mas);
 		this.xpy = xy;
-		this.ctx.strokeStyle = this.Gcolor;
+		this.ctx.stroke();
+		this.ctx.beginPath();
+		this.ctx.strokeStyle = '#0000ff';
 		this.ctx.moveTo(this.cycle - 1, this.maxy - this.gpy/this.masg);
 		this.ctx.lineTo(this.cycle, this.maxy - gy/this.masg);
 		this.gpy = gy;

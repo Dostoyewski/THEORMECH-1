@@ -21,8 +21,9 @@ class Animal{											//Класс хищника
 				c[this.x][this.y] = 0;
 				this.px = this.x;
 				this.py = this.y;
+				var is_ready = false;
 				//Выбор направления движения. Хищники - имбы, т.к. могут видеть жертву и двигаться к ближайшей, в т.ч. и по диагонали.
-				for(var k = 1; k < 30; k++){
+				for(var k = 1; k < 15; k++){
 					for(var i = -k; i <= k; i++){
 						for(var j = -k; j <= k; j++){
 							if(!(i == 0 && j == 0)){
@@ -35,29 +36,23 @@ class Animal{											//Класс хищника
 									if(i > 0 && j > 0) dir = 6;
 									if(i < 0 && j > 0) dir = 7;
 									if(i < 0 && j < 0) dir = 8;
+									is_ready = true;
 								}
 							}
+							if(is_ready) break;
 						}
+						if(is_ready) break;
 					}
+					if(is_ready) break;
 				}
-				/* if(dx == 0 && dy < 0) dir = 1;
-				if(dx > 0 && dy == 0) dir = 2;
-				if(dx == 0 && dy > 0) dir = 3;
-				if(dx < 0 && dy == 0) dir = 4;
-				if(dx > 0 && dy < 0) dir = 5;
-				if(dx > 0 && dy > 0) dir = 6;
-				if(dx < 0 && dy > 0) dir = 7;
-				if(dx < 0 && dy < 0) dir = 8;
-				dx = 0;
-				dy = 0; */
-				if(this.y > 0 && c[this.x][this.y - 1] == 2) dir = 1;
+				/*if(this.y > 0 && c[this.x][this.y - 1] == 2) dir = 1;
 				if(this.x < 349 && c[this.x + 1][this.y] == 2) dir = 2;
 				if(this.y < 249 && c[this.x][this.y + 1] == 2) dir = 3;
 				if(this.x > 0 && c[this.x - 1][this.y] == 2) dir = 4;
 				if(this.x < 349 && this.y > 0 && c[this.x + 1][this.y - 1] == 2) dir = 5;
 				if(this.x < 349 && this.y < 249 && c[this.x + 1][this.y + 1] == 2) dir = 6;
 				if(this.x > 0 && this.y < 249 && c[this.x - 1][this.y + 1] == 2) dir = 7;
-				if(this.x > 0 && this.y > 0 && c[this.x - 1][this.y - 1] == 2) dir = 8;
+				if(this.x > 0 && this.y > 0 && c[this.x - 1][this.y - 1] == 2) dir = 8;*/
 				switch(dir){
 					case 1:																				//	Схема соответствия кода направлению движения
 						if(this.y > 0 && c[this.x][this.y - 1] != 1){									//  7  3  6

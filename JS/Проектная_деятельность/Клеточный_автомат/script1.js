@@ -37,6 +37,9 @@ function main(){
 	var MX = [];										//Массив с хищниками для обработки
 	var xlimit;											//Ограничения по количеству существ
 	var glimit;
+	var xunlim = false;
+	var gunlim = false;
+
 	var c = createArray(350, 250);
 	var field = new Field("#ff0000", "#0000ff", ctx, 350, 250);
 	for(var i = 0; i < 350; i++){						//Обнуление массива
@@ -45,7 +48,7 @@ function main(){
 		}
 	}
 	
-	gen.onclick = function(){							//Генерация поля
+	function gen(){							//Генерация поля
 		Num_x = document.getElementById("lowe").value;
 		Num_g = document.getElementById("sheep").value;
 		ID_start = Num_g;
@@ -55,6 +58,8 @@ function main(){
 		R_p_x = document.getElementById("xreplicate").value;
 		xlimit = document.getElementById("xlimit").value;
 		glimit = document.getElementById("glimit").value;
+		if(xlimit == 0) xunlim = true;					//Если введен нуль, то ограничение на численность снято
+		if(glimit == 0) gunlim = true;
 		for(var i = 0; i < Num_x; i++){
 			let x = getRandomInt(0, 349);
 			let y = getRandomInt(0, 249);
@@ -79,22 +84,25 @@ function main(){
 	function run(){
 		let n = 0;
 		let m = 0;
-		for(var i = 0; i < Num_x; i++){					//Обработка перемещения хищников
-			let dir = getRandomInt(1, 4);
-			MX[i].move(dir, c);
-			if(!MX[i].alive){
-				Num_d_x++;
-				MDX[n] = MX[i].num;
-				n++;
-			}
-			if(MX[i].replicate && Num_x <= xlimit){
-				MX.push(new Animal(MX[i].sx, MX[i].sy, D_p, XID_start, R_p_x));
-				console.log('Хищник ', MX[i].num, ' размножился ', XID_start);
-				Num_x++;
-				XID_start++;
-				MX[i].replicate = false;
+		for(var ii = 0; ii < 1; ii++){						//Отношение скорости хищников к скорости жертв
+			for(var i = 0; i < Num_x; i++){					//Обработка перемещения хищников
+				let dir = getRandomInt(1, 4);
+				MX[i].move(dir, c);
+				if(!MX[i].alive){
+					Num_d_x++;
+					MDX[n] = MX[i].num;
+					n++;
+				}
+				if(MX[i].replicate && Num_x <= xlimit){
+					MX.push(new Animal(MX[i].sx, MX[i].sy, D_p, XID_start, R_p_x));
+					console.log('Хищник ', MX[i].num, ' размножился ', XID_start);
+					Num_x++;
+					XID_start++;
+					MX[i].replicate = false;
+				}
 			}
 		}
+		
 		for(var i = 0; i < Num_d_x; i++){				//Обработка мертвых хищников
 			for(var j = 0; j < Num_x; j++){
 				if(MDX[i] == MX[j].num){
@@ -145,6 +153,7 @@ function main(){
 	}
 	
 	b1.onclick = function(){
+		gen();
 		f = setInterval(run, 150);
 	}
 	
